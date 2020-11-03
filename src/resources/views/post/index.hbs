@@ -1,0 +1,50 @@
+
+    <style>
+        body {
+            color: dimgray;
+            background-color:honeydew;
+        }
+        .card-title {
+            display: -webkit-box;
+            margin-top: 10px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            color:darkcyan;
+        }
+        .card-text {
+            display: -webkit-box;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+        }
+        .card-body img {
+            height: 200px;
+        }
+        .card {
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+        a:hover {
+            text-decoration: none;
+        }
+    </style>
+    <div class="container">
+        <div class="row">
+            {{#each post}}
+            <div class="col-sm-4">
+                <div class="card">
+                <div class="card-body">
+                    <img src="uploads/{{this.image}}" class="card-img-top" alt="">
+                    <a href="/post/details/{{ this.slug }}">
+                        <h4 class="card-title">{{ this.title }}</h4>
+                    </a>
+                    <p class="card-text"><i>{{ this.description}}</i></p>
+                </div>
+                </div>
+            </div>
+            {{/each}} 
+        </div>
+    </div>

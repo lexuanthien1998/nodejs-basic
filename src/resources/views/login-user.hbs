@@ -1,0 +1,21 @@
+
+<div class="container">
+    <h3 class="text-center mt-3">Đăng nhập</h3>
+    <form method="POST" action="/login" >
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" class="form-control" name="email">
+        </div>
+        <div class="form-group">
+            <label for="pass">Password</label>
+            <input type="password" id="pass" class="form-control" name="password">
+        </div>
+        <button type="submit" class="btn btn-success">Đăng nhập</button>
+    </form>
+    
+    <div class="entry">
+        {{#if message}}
+            <h1>{{message}}</h1>
+        {{/if}}
+    </div>
+</div>

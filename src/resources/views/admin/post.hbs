@@ -1,0 +1,96 @@
+    <style>
+        .div-table {
+            margin: 50px;
+        }
+    </style>
+    <div class="div-table">
+    <div class="d-flex">
+        <h2>Quản lý bài viết</h2>
+        <a class="ml-auto mr-2" href="/admin/post/create">
+            <button class="btn btn-success">.createNewPost</button>
+        </a>
+    </div>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>.title</th>
+            <th>.description</th>
+            <th>.category</th>
+            <th>.author</th>
+            <th>.action</th>
+        </tr>
+        </thead>
+        <tbody>            
+            {{#each post}}
+            <tr>
+                <td>{{this.title}}</td>
+                <td>{{this.description}}</td>
+                <td>{{this.category}}</td>
+                <td>{{this.author}}</td>
+                <td>
+                    <a href="/admin/post/{{this._id}}/edit">
+                        <button type="button" class="btn btn-secondary btn-sm mr-3">.edit</button>
+                    </a>
+                    <button type="button" id="btn_delete" data-id="{{this._id}}" data-toggle="modal" data-target="#DeletePost" class="btn btn-danger btn-sm">.delete</button>
+                    {{!-- onclick="deletePost('{{this._id}}')" --}}
+                </td>
+            </tr>
+            {{/each}} 
+        </tbody>
+    </table>
+    </div>
+
+    <div class="modal fade" id="DeletePost" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btn-back" class="btn btn-secondary" data-dismiss="modal">Quay về !</button>
+                <form id="addAction" action="" method="POST">
+                    <button type="submit" class="btn btn-danger">Xóa !</button>
+                </form>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            $('#DeletePost').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget);
+                var id = button.data('id');
+                $("#addAction").attr("action", "/admin/post/"+id+"/delete");
+            })
+            $('#btn-back').click(function() {
+                $("#addAction").attr("action", "");
+            })
+        });
+    </script>
+    
+    {{!-- <script type="text/javascript">
+        $('#btn_delete').click( function(e) {
+            
+        })
+        function deletePost(id) {
+            var r = confirm("Bạn có chắc chắn muốn xóa Bài viết này ?");
+            if (r == true) {
+                $.ajax() ({
+                    url: "/admin/post/"+id+"/delete", 
+                    type: "POST",
+                    contentType: "application/json",
+                    processData: false,
+                    success: function(data) {
+
+                    }
+                });
+            }
+        }
+    </script> --}}

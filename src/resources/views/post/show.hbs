@@ -1,0 +1,30 @@
+
+<style>
+    .jumbotron img {
+        border-radius: .25rem!important;
+        width: auto;
+        max-height: 500px;
+    }
+    #author {
+        margin-right: 10px;
+        color: darkslategrey;
+        font-weight: bold;
+    }
+    #category {
+        font-weight: bold;
+        color: indianred;
+        border-bottom: 2px solid;
+    }
+</style>
+<div class="jumbotron">
+    <h1>{{post.title}}</h1>
+    <div class="d-flex">
+        <span id="author">{{post.author}},</span>
+        <span id="category" >{{post.category}}</span>
+    </div>
+    <hr>    
+    <i>{{post.description}}</i>
+    <img src="{{post.image}}" class="mx-auto my-3 d-block" alt="">
+    <p>{{post.content}}</p>
+    <hr>
+</div>
